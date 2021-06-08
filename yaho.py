@@ -50,7 +50,8 @@ class chapter6:
                 crpStr += chr(ord(vStr[idx])-1)
         print(crpStr)
 import math
-import random 
+import random
+from tkinter.constants import END 
 
 class chpater8:
     class Point:
@@ -61,7 +62,7 @@ class chpater8:
         def distance(self, other):
             return math.sqrt(math.pow(self.x - other.x, 2) + math.pow(self.y - other.y, 2)) 
 
-from tkinter import Entry, Frame, Label, Tk, LEFT
+from tkinter import Entry, Frame, Label, Tk, LEFT, Button
 import random
 class gameGUI(Frame):
     def __init__(self, root):
@@ -77,15 +78,20 @@ class gameGUI(Frame):
         btn = Button(root, text = 'Enter', command = self.clicked)
         btn.pack()
 
-    def clicked(self, event):
+    def clicked(self):
         user = self.ent.get()
-        com = random.randrange(0, 10)
-        if com == user :
+        com = random.randrange(1, 5)
+        print('user {} comp {}'.format(user, com))
+        if int(user) == com :
+            print('맞춤')
+            self.ent.delete(0, END)
+            self.ent.insert(0, '맞춤')
+        else :
+            print('틀림')
+            self.ent.delete(0, END)
 
-        
-
-
-root = Tk()
-app = gameGUI(root)
-app.pack()
-root.mainloop()
+if __name__ == '__main__':
+    home = Tk()
+    app = gameGUI(home)
+    app.pack()
+    home.mainloop()
